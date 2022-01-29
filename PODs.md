@@ -73,6 +73,7 @@ pod "webapp" deleted
 
 Create a new pod with the name redis and with the image redis123.
 
+```sh
 kubectl run redis --image=redis123 --dry-run=client -o yaml
 apiVersion: v1
 kind: Pod
@@ -89,3 +90,4 @@ spec:
   dnsPolicy: ClusterFirst
   restartPolicy: Always
 status: {}
+```
