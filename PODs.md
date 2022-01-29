@@ -1,17 +1,19 @@
-**Get All Pods**
+<details>
+  <summary><b>Get All Pods</b></summary>
 ```sh
 $ kubectl get pods
 ```
+</details>
 
 -----------
-
-**Create a new pod with the nginx image**
+<details>
+  <summary><b>Create a new pod with the nginx image</b></summary>
 ```sh
 $ kubectl run nginx --image=nginx
 ```
+</details>
 
 -----------
-
 **Check image in pod**
 ```sh
 $ kubectl describe pod <<pod_name>>
