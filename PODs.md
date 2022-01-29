@@ -1,24 +1,27 @@
-kubectl get pods
+**Get All Pods**
+```sh
+$ kubectl get pods
+```
 
 -----------
 
 **Create a new pod with the nginx image**
 ```sh
-kubectl run nginx --image=nginx
+$ kubectl run nginx --image=nginx
 ```
 
 -----------
 
 **Check image in pod**
 ```sh
-kubectl describe pod <<pod_name>>
+$ kubectl describe pod <<pod_name>>
 ```
 
 -----------
 
 **Which nodes are these pods placed on**
 ```sh
-kubectl get pods -o wide
+$ kubectl get pods -o wide
 NAME            READY   STATUS    RESTARTS   AGE    IP           NODE           NOMINATED NODE   READINESS GATES
 nginx           1/1     Running   0          2m6s   10.42.0.9    controlplane   <none>           <none>
 newpods-2tv7f   1/1     Running   0          110s   10.42.0.10   controlplane   <none>           <none>
@@ -30,7 +33,7 @@ newpods-7h242   1/1     Running   0          110s   10.42.0.12   controlplane   
 
 **How many containers are part of the pod webapp?**
 ```sh
-ubectl describe pod webapp
+$ kubectl describe pod webapp
 Name:         webapp
 Namespace:    default
 Priority:     0
@@ -75,16 +78,17 @@ Containers:
 
 **Delete the webapp Pod**
 ```sh
-kubectl delete pod webapp
+$ kubectl delete pod webapp
 pod "webapp" deleted
 ```
 
 -----------
 
 **Create a new pod with the name redis and with the image redis123**
-
 ```sh
-kubectl run redis --image=redis123 --dry-run=client -o yaml
+$ kubectl run redis --image=redis123 --dry-run=client -o yaml
+```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
