@@ -1,16 +1,16 @@
 <details>
   <summary><b>Get All Pods</b></summary>
-```sh
-$ kubectl get pods
-```
+
+    $ kubectl get pods
+
 </details>
 
 -----------
 <details>
   <summary><b>Create a new pod with the nginx image</b></summary>
-```sh
-$ kubectl run nginx --image=nginx
-```
+
+    $ kubectl run nginx --image=nginx
+
 </details>
 
 -----------
