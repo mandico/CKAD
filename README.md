@@ -21,3 +21,5 @@ https://github.com/dgkanatsios/CKAD-exercises
 
 Practice Enough With These 150 Questions for the CKAD Exam
 https://medium.com/bb-tutorials-and-thoughts/practice-enough-with-these-questions-for-the-ckad-exam-2f42d1228552
+
+https://github.com/ahmetb/kubernetes-network-policy-recipes
