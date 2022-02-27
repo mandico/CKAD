@@ -1,10 +1,10 @@
-alias k=’kubectl’
-alias kg=’k get’
-alias kd=’k describe’
-alias kl=’k logs’
+alias k='kubectl'
+alias kg='k get'
+alias kd='k describe'
+alias kl='k logs'
 alias kex='kubectl exec -i -t'
-alias ke=’k explain –recursive=true’
-opt=’–dry-run=client -o yaml’
+alias ke='k explain –recursive=true'
+opt='–-dry-run=client -o yaml'
 
 # Get current context
 alias krc='kubectl config current-context'
