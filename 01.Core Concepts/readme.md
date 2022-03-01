@@ -40,3 +40,6 @@ or
 >kubectl scale --replicas=3 replicasets my-replicaset
 
 ### Deployments
+
+
+### Namespaces
