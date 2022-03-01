@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql
+spec:
+  container:
+  - image: mysql
+    name: mysql
+    volumeMounts:
+    - mountPath: /var/lib/mysql
+      name: data-volume
+  volume:
+  - name: data-volume
+    persistenceVolumeClaim:
+      claimName: data-volume
