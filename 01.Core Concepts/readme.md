@@ -38,3 +38,5 @@ status: {}
 >kubectl scale --replicas=2 -f replicaset-definition.yaml
 or
 >kubectl scale --replicas=3 replicasets my-replicaset
+
+### Deployments

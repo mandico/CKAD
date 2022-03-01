@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+  labels:
+    app: rcc
+    resource: deployment
+spec:
+  selector:
+    matchLabels:
+      tier: frontend
+  replicas: 2
+  template:
+    metadata:
+      name: my-pod
+      labels:
+        segment: balcao
+        app: rcc
+        module: cartao
+        tier: frontend
+    spec:
+      containers:
+        - name: rcc
+          image: nginx
