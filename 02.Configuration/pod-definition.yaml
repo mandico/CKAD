@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-sleep
+  labels:
+    name: ubuntu-sleep
+spec:
+  containers:
+  - name: ubuntu-sleep
+    image: luizmandico/ubuntu-sleeper:latest
+    command:
+      - "sleep"
+    args:
+      - "12"
