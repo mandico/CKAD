@@ -7,7 +7,7 @@ alias krm='k delete'
 alias kex='kubectl exec -i -t'
 alias ke='k explain –-recursive=true'
 alias kn='k config set-context --current --namespace '
-opt='--dry-run=client -o yaml'
+do='--dry-run=client -o yaml'
 
 
 set tabstop=2
