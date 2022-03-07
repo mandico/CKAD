@@ -6,21 +6,15 @@ alias ka='k apply -f'
 alias krm='k delete'
 alias kex='kubectl exec -i -t'
 alias ke='k explain –-recursive=true'
+alias kn='k config set-context --current --namespace '
 opt='--dry-run=client -o yaml'
 
-# Get current context
-alias krc='kubectl config current-context'
-# List all contexts
-alias klc='kubectl config get-contexts -o name | sed "s/^/  /;\|^  $(krc)$|s/ /*/"'
-# Change current context
-alias kcc='kubectl config use-context "$(klc | fzf -e | sed "s/^..//")"'
 
-# Get current namespace
-alias krn='kubectl config get-contexts --no-headers "$(krc)" | awk "{print \$5}" | sed "s/^$/default/"'
-# List all namespaces
-alias kln='kubectl get -o name ns | sed "s|^.*/|  |;\|^  $(krn)$|s/ /*/"'
-# Change current namespace
-alias kcn='kubectl config set-context --current --namespace "$(kln | fzf -e | sed "s/^..//")"'
+set tabstop=2
+set expandtab
+set shiftwidth=2
+
+
 
 Alias de apoio:
 
