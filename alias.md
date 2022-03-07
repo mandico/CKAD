@@ -8,6 +8,7 @@ alias kex='kubectl exec -i -t'
 alias ke='k explain –-recursive=true'
 alias kn='k config set-context --current --namespace '
 do='--dry-run=client -o yaml'
+now='--grace-period 0 --force'
 
 
 set tabstop=2
