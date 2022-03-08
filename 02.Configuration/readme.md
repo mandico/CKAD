@@ -102,5 +102,29 @@ Seccomp: Filter a process's system calls.
 Service Account
 Resource Requirements
 Tains and Tolerations
+
+
 Node Selector
+``` bash
+kubectl labels node <node-name> <label-key>:<label-value>
+kubectl labels node mynode size:Large
+```
+
+pod-definition-selector.yaml
+``` yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-webapp-color
+  labels:
+    name: simple-webapp-color
+spec:
+  containers:
+  - name: simple-webapp-color
+    image: nginx
+  nodeSelector:
+    size: Large
+```
+
+
 Node Affinity
