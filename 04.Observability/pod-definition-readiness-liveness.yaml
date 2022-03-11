@@ -1,9 +1,17 @@
-Readiness and Liveness Probes
-- HTTP Test - /api/ready
-- TCP Test - 3306
-- Exec Command
-
-```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-webapp
+  labels:
+    name: simple-webapp
+spec:
+  containers:
+  - name: simple-webapp
+    image: <Image>
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
     readinessProbe:
       httpGet:
         path: /api/ready
@@ -17,8 +25,6 @@ Readiness and Liveness Probes
       initialDelaySeconds: 10
       periodSeconds: 5
       failureThreshold: 8
-```
-```yaml
     livenessProbe:
       httpGet:
         path: /api/ready
@@ -32,11 +38,4 @@ Readiness and Liveness Probes
       initialDelaySeconds: 10
       periodSeconds: 5
       failureThreshold: 8
-```
-
-Container Logging
-```bash
-kubectl logs [pod_name] -f
-```
-
-Monitor and Debug Applications
+        
