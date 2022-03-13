@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: my-cronjob
+spec:
+  schedule: "0 0 0 1/1 * ? *"
+  jobTemplate:
+    metadata:
+      name: my-job
+    spec:
+      template:
+        metadata:
+          name: my-pod
+        spec:
+          containers:
+            - name: report-tools
+              image: report-tools
