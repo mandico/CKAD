@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-webapp
+  annotations:
+    buildVersion: 1.20.31
+  labels:
+    app: App1
+    function: frontend 
+spec:
+  containers:
+  - name: simple-webapp
+    image: simple-webapp
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080
