@@ -1,3 +1,5 @@
+complete -F __start_kubectl k
+
 alias k='kubectl'
 alias kg='k get'
 alias kd='k describe'
@@ -14,6 +16,15 @@ now='--grace-period 0 --force'
 set tabstop=2
 set expandtab
 set shiftwidth=2
+
+
+# display list of contexts
+kubectl config get-contexts
+# display the current-context
+kubectl config current-context  
+    
+# set the default context to my-cluster-name
+kubectl config use-context my-cluster-name
 
 
 
