@@ -12,6 +12,8 @@ alias kn='k config set-context --current --namespace '
 do='--dry-run=client -o yaml'
 now='--grace-period 0 --force'
 
+alias kn='kubectl config set-context --current --namespace '
+
 
 set tabstop=2
 set expandtab
