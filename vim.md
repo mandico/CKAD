@@ -1,20 +1,24 @@
-Word:
-b  / w --- Previous/next word
-ge / e --- Previous/next end of word
 
-Line:
-0 --- Start of Line
-$ --- End of Line
+``` bash
+# Word
+b  / w ### Previous/next word
+ge / e ### Previous/next end of word
 
-Document
-gg --- First line
-G  --- Last line
+# Line
+0 ### Start of Line
+$ ### End of Line
 
-Editing
-C --- Delete until end of line and insert
-u --- Undo changes
-<C-R> --- Redo changes
+# Document
+gg ### First line
+G  ### Last line
 
-Clipboard
-dd --- Delete line (Cut)
-yy --- Yank line (Copy)
+# Editing
+C ### Delete until end of line and insert
+u ### Undo changes
+<C-R> ### Redo changes
+
+# Clipboard
+dd ### Delete line (Cut)
+yy ### Yank line (Copy)
+p  ### Paste
+```
