@@ -22,3 +22,7 @@ spec:
       containers:
         - name: rcc
           image: nginx
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
