@@ -1,0 +1,5 @@
+openssl genrsa -out my-bank.key 1024
+
+openssl rsa -in my=bank.key -out > my-bank.pem
+
+openssl req -new -key my-bank.key -out my-bank.csr -subj="/C=US/CA/O;"
