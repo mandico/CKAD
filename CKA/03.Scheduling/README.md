@@ -111,3 +111,77 @@ spec:
                   - Large
                   - Medium
 ```
+
+### 6. Resources Requeriments and Limits
+
+``` yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    name: myapp-pod
+spec:
+  containers:
+  - name: myapp-pod
+    image: nginx
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "250m"
+      limits:
+        memory: "254Mi"
+        cpu: "500m"
+```
+
+### 7. Daemon Sets
+
+A DaemonSet ensures that all (or some) Nodes run a copy of a Pod. As nodes are added to the cluster, Pods are added to them. As nodes are removed from the cluster, those Pods are garbage collected. Deleting a DaemonSet will clean up the Pods it created.
+
+Some typical uses of a DaemonSet are:
+
+- running a cluster storage daemon on every node
+- running a logs collection daemon on every node
+- running a node monitoring daemon on every node
+
+``` yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: monitoring-daemon
+spec:
+  selector:
+    matchLabels:
+      app: monitoring-agent
+  template:
+    metadata:
+      labels:
+        app: monitoring-agent
+    spec:
+      containers:
+      - name: monitoring-agent
+        image: monitoring-agent
+```
+
+### 8. Static Pods
+
+Kubelet
+/etc/kubernetes/manifests
+
+Static Pods:
+- Created by the Kubelet.
+- Deploy Control Pane components as Static Pods.
+- Ignored by Kube-Scheduler.
+Daemon Sets:
+- Created by Kube-API server (DaemonSet Controller).
+- Deploy Monitoring Agents, Logging Agents on Nodes.
+- Ignored by Kube-Scheduler.
+
+### 8. Multiple Schedules
+
+``` yaml
+apiVersion: kubescheduler.config.k8s.io/v1
+kind: KubeSchedulerConfiguration
+profile:
+- scheduleName: my-scheduler
+```
