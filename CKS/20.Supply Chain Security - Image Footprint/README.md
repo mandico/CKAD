@@ -1,0 +1,1 @@
+Practice - Reduce Image Footprint with Multi-Stage
