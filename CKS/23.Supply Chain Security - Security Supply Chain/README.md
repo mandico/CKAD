@@ -1,0 +1,5 @@
+https://github.com/aquasecurity/trivy#docker
+
+docker run ghcr.io/aquasecurity/trivy:latest image nginx:latest
+
+trivy image ngninx:latest
