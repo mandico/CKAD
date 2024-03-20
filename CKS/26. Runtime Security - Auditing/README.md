@@ -15,3 +15,6 @@ The defined **audit levels** are:
 - **RequestResponse** - log event metadata, request and response bodies. This does not apply for non-resource requests.
 
 ![Stage and Levels](stage_and_levels.png)
+
+
+Repo: [auditing manifests](https://github.com/killer-sh/cks-course-environment/tree/master/course-content/runtime-security/auditing)
