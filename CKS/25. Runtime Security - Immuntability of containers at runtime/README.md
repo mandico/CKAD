@@ -10,11 +10,45 @@ Container and Pod Level Enforcement
 Scenarios to ensure Pod`s containers are immutable
 
 
+Create manifest simple pod:
 ```bash
 kubectl run immutable --image=httpd -o yaml --dry-run=client > pod_v0.yaml
-kubectl create -f pod_v0.yaml
-kubectl exec -it immutable -- bash
+```
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: immutable
+  name: immutable
+spec:
+  containers:
+  - image: httpd
+    name: immutable
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+```
+Create pod and execute *bash* and *touch*:
+```bash
+$ kubectl -f pod_v0.yaml create
+pod/immutable created
 
+$ kubectl exec -it immutable -- bash
+root@immutable:/usr/local/apache2# touch /test
+root@immutable:/usr/local/apache2# bash 
+root@immutable:/usr/local/apache2# 
+```
+Delete pod:
+```bash
+$ kubectl delete -f pod_v0.yaml --force --grace-period 0
+pod "immutable" force deleted
+```
+
+Clone *pod_v0.yaml* and increment *startupProbe*:
+```bash
 cp -Rvf pod_v0.yaml pod_v1.yaml
 ```
 
@@ -27,17 +61,21 @@ cp -Rvf pod_v0.yaml pod_v1.yaml
         - /bin/touch
 ...
 ```
-
+Create pod and try execute *touch*:
 ```bash
-kubectl delete -f pod_v0.yaml --force --grace-period 0
+$ kubectl -f pod_v1.yaml create
+pod/immutable created
 
-kubectl -f pod_v1.yaml create
-
-kubectl exec -it immutable -- bash
-root@immutable:/usr/local/apache2# touch test
+$ kubectl exec -it immutable -- bash
+root@immutable:/usr/local/apache2# touch /test
 bash: touch: command not found
 ```
-
+Delete pod:
+```bash
+$ kubectl delete -f pod_v1.yaml --force --grace-period 0
+pod "immutable" force deleted
+```
+Clone *pod_v0.yaml* and increament *startupProbe*:
 ```
 cp -Rvf pod_v0.yaml pod_v2.yaml
 ```
@@ -51,22 +89,25 @@ cp -Rvf pod_v0.yaml pod_v2.yaml
         - /bin/bash
 ...
 ```
-
+Create pod and try execute *bash*:
 ```bash
-kubectl delete -f pod_v1.yaml --force --grace-period 0
+$ kubectl -f pod_v2.yaml create
+pod/immutable created
 
-kubectl -f pod_v2.yaml create
-
-kubectl exec -it immutable -- bash
+$ kubectl exec -it immutable -- bash
 OCI runtime exec failed: exec failed: unable to start container process: exec: "bash": executable file not found in $PATH: unknown
 command terminated with exit code 126
 ```
-
+Delete pod:
 ```
-kubectl delete -f pod_v2.yaml --force --grace-period 0
+$ kubectl delete -f pod_v2.yaml --force --grace-period 0
+pod "immutable" force deleted
+```
+
+Clone *pod_v0.yaml* and increament *securityContext* to *readOnlyRootFilesystem*:
+```
 cp -Rvf pod_v0.yaml pod_v3.yaml
 ```
-
 ```yaml
 ...
     securityContext:
@@ -80,17 +121,12 @@ cp -Rvf pod_v0.yaml pod_v3.yaml
       sizeLimit: 500Mi
 ...
 ```
-
+Create pod and try execute *touch /test*:
 ```bash
-kubectl -f pod_v3.yaml create
+$ kubectl -f pod_v3.yaml create
+pod/immutable created
 
-kubectl exec -it immutable -- bash
-
-root@immutable:/usr/local/apache2# touch /tmp/test
-touch: cannot touch '/tmp/test': Read-only file system
-root@immutable:/usr/local/apache2# touch /usr/local/apache2/logs/test
-root@immutable:/usr/local/apache2# ls -ltrh /usr/local/apache2/logs/
-total 4.0K
--rw-r--r-- 1 root root 2 Mar 19 19:56 httpd.pid
--rw-r--r-- 1 root root 0 Mar 19 19:57 test
+$ kubectl exec -it immutable -- bash
+root@immutable:/usr/local/apache2# touch /test
+touch: cannot touch '/test': Read-only file system
 ```
