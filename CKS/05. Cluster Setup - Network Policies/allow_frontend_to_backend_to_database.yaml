@@ -1,0 +1,83 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontend
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      run: frontend
+  policyTypes:
+  - Egress
+  egress:
+  - to:
+    - podSelector:
+        run: backend
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: backend
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      run: backend
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          run: frontend
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: backend
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      run: backend
+  policyTypes:
+  - Egress
+  egress:
+    - to:
+      - namespaceSelector:
+          matchLabels:
+            ns: cassandra
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-cassandra
+  namespace: cassandra
+spec:
+  podSelector: {}
+  policyTypes:
+  - Egress
+  - Ingress
+  egress:
+  - ports:
+    - port: 53
+      protocol: TCP
+    - port: 53
+      protocol: UDP
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: cassandra
+  namespace: cassandra
+spec:
+  podSelector:
+    matchLabels:
+      run: cassandra
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          ns: default
