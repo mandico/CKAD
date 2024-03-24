@@ -1,0 +1,5 @@
+[README Examples](https://github.com/matiassingers/awesome-readme)
+[CONTRIBUTING Examples](https://github.com/mntnr/awesome-contributing)
+[GIT ISSUES & PR Examples](https://github.com/devspace/awesome-github-templates)
+[License](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository)
+[GitIgnore Templates](https://github.com/github/gitignore)
