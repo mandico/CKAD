@@ -1,10 +1,13 @@
 # Install Kubernetes
 
 ### Prerequisites
+```
 VM1 - CKS-MASTER - Ubuntu 20.04 LTS / Disk 50Gb / 2 CPU / 8 Gb Men
 VM2 - CKS-WORKER - Ubuntu 20.04 LTS / Disk 50Gb / 2 CPU / 8 Gb Men
+```
 
-___
+---
+
 #### CREATE cks-master VM using gcloud command
 ``` bash
 gcloud compute instances create cks-master --zone=europe-west3-c \
@@ -26,7 +29,8 @@ gcloud compute instances create cks-worker --zone=europe-west3-c \
 ##### you can use a region near you
 https://cloud.google.com/compute/docs/regions-zones
 
-___
+---
+
 #### INSTALL cks-master
 ``` bash
 gcloud compute ssh cks-master
@@ -42,9 +46,10 @@ bash <(curl -s https://raw.githubusercontent.com/killer-sh/cks-course-environmen
 ```
 run the printed kubeadm-join-command from the master on the worker
 
-___
+---
 
 #### Create Firewall Rules
 ``` bash
 gcloud compute firewall-rules create nodeports --allow tcp:30000-40000
 ```
+---
