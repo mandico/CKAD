@@ -71,3 +71,19 @@ curl https://10.156.0.2:6443 --cacert ca
 k --kubeconfig conf get ns
 
 openssl x509 -in apiserver.crt -text
+
+
+---
+
+### NodeRestriction AdmissionController
+
+NodeRestriction:
+- Admission Controller:
+  - kube-apiserver --enable-admission-plugins=NodeRestriction
+  - Limits the Node labels a kubelet can modify
+
+- Ensure secure workload isolation via labels
+  - no one can pretend to be ˜secure˜ node and schedule secure pods
+
+NodeRestriction in Action:
+- Verify the NodeRestriction work
